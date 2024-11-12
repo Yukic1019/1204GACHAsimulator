@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ガチャ結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>ガチャ結果</h1>
+    <p>ガチャを引いた結果: {{ result }}</p>
+    <img src="{{ url_for('static', filename='images/' + result + '.jpg') }}" alt="{{ result }}" class="gacha-image">
+    <br>
+    <a href="{{ url_for('index') }}">ホームに戻る</a>
+</body>
+</html>

@@ -1,0 +1,60 @@
+body {
+  font-family: 'Comic Sans MS', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
+  text-align: center;
+  background-color: #f0f8ff;
+  color: #333;
+}
+
+h1 {
+  color: #ff69b4;
+  font-size: 3em;
+  margin-bottom: 20px;
+  border: 5px solid #ff69b4;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #fff0f5;
+}
+
+a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  font-size: 1.2em;
+}
+
+a:hover {
+  background-color: #ff1493;
+}
+
+.gacha-image {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border: 5px solid #ff69b4;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: #fff0f5;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 1em;
+  color: #666;
+  border-top: 2px solid #ff69b4;
+  padding-top: 10px;
+  background-color: #fff0f5;
+}

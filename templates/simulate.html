@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>シミュレーション結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>シミュレーション結果</h1>
+    <p>全てのSR+を入手するまでに、ガチャを{{ count }}回（ガチャ{{ single_gacha_count }}回、11連ガチャ{{ multi_gacha_count }}回）回し、{{ cost }}円使った。</p>
+    <br>
+    <a href="{{ url_for('index') }}">ホームに戻る</a>
+</body>
+</html>

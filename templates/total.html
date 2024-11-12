@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>累計結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>累計結果</h1>
+    <p>ガチャを{{ total }}回（ガチャ{{ single_gacha_count }}回、11連ガチャ{{ multi_gacha_count }}回）回し、{{ cost }}円使った。</p>
+    <ul>
+        {% for rarity, count in counts.items() %}
+            <li>{{ rarity }}が{{ count }}枚</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('index') }}">ホームに戻る</a>
+</body>
+</html>
