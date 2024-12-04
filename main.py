@@ -1,8 +1,10 @@
-from flask import Flask, render_template, session, redirect, url_for
+import os
+from flask import Flask, render_template, session, redirect, url_for, request
 from gacha import draw_gacha, draw_11_gacha, simulate_until_all_sr_plus
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+DATAFILE = 'gacha_results.txt'
 
 @app.route('/')
 def index():
@@ -15,6 +17,11 @@ def gacha():
     session['total'] = session.get('total', 0) + 1
     session['cost'] = session.get('cost', 0) + 100
     session['single_gacha_count'] = session.get('single_gacha_count', 0) + 1
+
+    # 結果をファイルに保存
+    with open(DATAFILE, 'a') as f:
+        f.write(result + '\n')
+
     return render_template('gacha.html', result=result)
 
 @app.route('/11gacha')
@@ -24,6 +31,12 @@ def gacha_11():
     session['total'] = session.get('total', 0) + 11
     session['cost'] = session.get('cost', 0) + 1000
     session['multi_gacha_count'] = session.get('multi_gacha_count', 0) + 1
+
+    # 結果をファイルに保存
+    with open(DATAFILE, 'a') as f:
+        for result in results:
+            f.write(result + '\n')
+
     return render_template('11gacha.html', results=results)
 
 @app.route('/reset')
@@ -33,6 +46,11 @@ def reset():
     session['cost'] = 0
     session['single_gacha_count'] = 0
     session['multi_gacha_count'] = 0
+
+    # ファイルの内容をクリア
+    with open(DATAFILE, 'w') as f:
+        f.write('')
+
     return redirect(url_for('index'))
 
 @app.route('/total')
@@ -72,6 +90,15 @@ def simulate():
     cost = single_gacha_count * 100 + multi_gacha_count * 1000
 
     return render_template('simulate.html', count=count, draws=draws, cost=cost, single_gacha_count=single_gacha_count, multi_gacha_count=multi_gacha_count)
+
+@app.route('/load_results')
+def load_results():
+    if os.path.exists(DATAFILE):
+        with open(DATAFILE, 'r') as f:
+            results = f.read().splitlines()
+        return render_template('load_results.html', results=results)
+    else:
+        return "No saved results found."
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)

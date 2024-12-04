@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <title>ガチャ結果</title>
+</head>
+<body>
+    <h1>保存されたガチャ結果</h1>
+    <ul>
+        {% for result in results %}
+            <li>
+                <img src="{{ url_for('static', filename='images/' + result + '.jpg') }}" alt="{{ result }}" class="gacha-image">
+                {{ result }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">戻る</a>
+</body>
+</html>
