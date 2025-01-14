@@ -64,10 +64,18 @@ def total():
     # 各レアリティのカウント
     counts = {'N': 0, 'N+': 0, 'R': 0, 'R+': 0, 'SR': 0, 'SR+': 0}
     for result in results:
-        for rarity in counts:
-            if result.startswith(rarity):
-                counts[rarity] += 1
-                break
+        if 'N' in result:
+            counts['N'] += 1
+        elif 'N+' in result:
+            counts['N+'] += 1
+        elif 'R' in result:
+            counts['R'] += 1
+        elif 'R+' in result:
+            counts['R+'] += 1
+        elif 'SR' in result:
+            counts['SR'] += 1
+        elif 'SR+' in result:
+            counts['SR+'] += 1
 
     return render_template('total.html', total=total, results=results, cost=cost, counts=counts, single_gacha_count=single_gacha_count, multi_gacha_count=multi_gacha_count)
 
